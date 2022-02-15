@@ -34,7 +34,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Rome
-      - PLEX_CLAIM=claim-wx9ACUCwegcAVCLZ45fZ
+      - PLEX_CLAIM=
     volumes:
       - ~/config/plex:/config
       - /mnt/NAS:/media
@@ -46,7 +46,7 @@ services:
     volumes:
       - ~/config/redbot:/data
     environment:
-      - TOKEN=OTQxODk1OTYwMDI2NTU4NDg0.Ygcm-A.kkedTFwibt99BvelbrYikqlQ4qk
+      - TOKEN=
       - PREFIX=-
       - PUID=1000
       - TZ=Europe/Rome
