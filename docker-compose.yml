@@ -39,18 +39,6 @@ services:
       - ~/config/plex:/config
       - /mnt/NAS:/media
 
-  redbot:
-    container_name: redbot
-    image: ghcr.io/phasecorex/red-discordbot:full
-    restart: unless-stopped
-    volumes:
-      - ~/config/redbot:/data
-    environment:
-      - TOKEN=
-      - PREFIX=-
-      - PUID=1000
-      - TZ=Europe/Rome
-
   heimdall:
     container_name: heimdall
     image: lscr.io/linuxserver/heimdall
