@@ -13,12 +13,12 @@ services:
       - PGID=1000
       - TZ=Europe/Rome
     volumes:
-      - /mnt/NAS:/mnt
+      - /home/artic/data:/mnt
 
   plex:
     container_name: plex
     network_mode: bridge
-    image: plexinc/pms-docker
+    image: plexinc/pms-docker:latest
     restart: unless-stopped
     ports:
       - 32400:32400/tcp
@@ -34,14 +34,14 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Rome
-      - PLEX_CLAIM=
+      - PLEX_CLAIM=claim-wx9ACUCwegcAVCLZ45fZ
     volumes:
       - ~/config/plex:/config
-      - /mnt/NAS:/media
+      - /home/artic/data:/media
 
   heimdall:
     container_name: heimdall
-    image: lscr.io/linuxserver/heimdall
+    image: lscr.io/linuxserver/heimdall:latest
     restart: unless-stopped
     environment:
       - PUID=1000
