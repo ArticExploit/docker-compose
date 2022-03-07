@@ -12,8 +12,11 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Rome
+      - WEBUI_PORT=8080
     volumes:
       - /home/artic/data:/mnt
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
 
   plex:
     container_name: plex
@@ -34,10 +37,12 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Rome
-      - PLEX_CLAIM=claim-wx9ACUCwegcAVCLZ45fZ
+      - PLEX_CLAIM=
     volumes:
       - ~/config/plex:/config
       - /home/artic/data:/media
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
 
   heimdall:
     container_name: heimdall
@@ -52,3 +57,19 @@ services:
       - 443:443
     volumes:
       - ~/config/heimdall:/config
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+  watchtower:
+    container_name: watchtower
+    image: containrrr/watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_LABEL_ENABLE=true
+      - WATCHTOWER_INCLUDE_RESTARTING=true
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
