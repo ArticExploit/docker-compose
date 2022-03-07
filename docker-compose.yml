@@ -1,13 +1,8 @@
-version: "3.4"
+version: "2.1"
 services:
   qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent
     container_name: qbittorrent
-    image: linuxserver/qbittorrent:latest
-    restart: unless-stopped
-    ports:
-      - 6881:6881
-      - 6881:6881/udp
-      - 8080:8080
     environment:
       - PUID=1000
       - PGID=1000
@@ -15,6 +10,12 @@ services:
       - WEBUI_PORT=8080
     volumes:
       - /home/artic/data:/mnt
+      - /home/artic/config/qbt:/config
+    ports:
+      - 6881:6881
+      - 6881:6881/udp
+      - 8080:8080
+    restart: unless-stopped
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
 
@@ -73,3 +74,4 @@ services:
       - WATCHTOWER_INCLUDE_RESTARTING=true
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+
